@@ -2,6 +2,7 @@ Meshblu = require './src/meshblu'
 Device = require './src/device'
 {spawn} = require 'child_process'
 request = require 'request'
+_ = require 'lodash'
 
 device_uuid = process.env.DEVICE_UUID
 device_token = process.env.DEVICE_TOKEN
