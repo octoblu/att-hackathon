@@ -13,9 +13,11 @@ sendSMS = (message) =>
   console.log('Sending SMS')
   request.post
     uri: "https://api.sendhub.com/v1/messages/?username=4805706128&api_key=c067818f26b8d711672621f4dcec667ab86cdc48"
-    json: 
-      groups: [108260903976175829]
+    json: {
+      contacts: ['108260810164275910'],
       text: message
+    }
+  , console.log
 
 debouncedSMS = _.debounce sendSMS, 1500
 
