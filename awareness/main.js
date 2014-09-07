@@ -20,17 +20,12 @@ conn.on('ready', function(){
     conn.on('message', function(data){
         console.log(data);
 
-        switch(data.fromUuid) {
-            case uuids.arduino:
-                window.model.heartRate = data.payload[0];
-                window.model.bac = data.payload[1];
-                break;
-            case uuids.chat:
-                window.model.chat.push(data.payload);
-                break;
+        if (data.fromUuid === uuids.arduino) {
+            window.model.heartRate = data.payload[0];
+            window.model.bac = data.payload[1];
+        } else if (data.devices === data.devices) {
+            window.model.chat.unshift(data.payload);
         }
-
-
     });
 
     conn.status(function (data) {
@@ -38,6 +33,7 @@ conn.on('ready', function(){
     });
 
     conn.subscribe({ 'uuid': 'd870d511-1c42-11e4-861d-89322229e557' });
+    conn.subscribe({ 'uuid': '01ccada1-361d-11e4-8e5a-919063640dc3', token: 'nvige9mfoe7e3ik9u3resels65g0hpvi' });
 });
 
 var frequency = 100,
