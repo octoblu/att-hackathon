@@ -38,17 +38,20 @@
     </div>
     <div class="main" ng-controller="MainController">
         <div class="stats">
-
             Face: {{model.face}}
             BAC: {{model.bac}}
             Heart: {{model.heartRate}}
         </div>
-        <div class="heart" ng-controller="HeartController">
-            <span kendo-radialgauge k-scale="{ min:40, max: 160}" ng-model="model.heartRate"></span>
+        <div class="gauges">
+            <div class="heart" ng-controller="HeartController">
+                <span kendo-radialgauge k-scale="heartScale" ng-model="model.heartRate"></span>
+            </div>
+
+            <div class="bac">
+                <h1>bac</h1>
+            </div>
         </div>
-        <div class="bac">
-            <h1>bac</h1>
-        </div>
+
     </div>
 </div>
 
