@@ -13,7 +13,11 @@ unsigned long previousMillis;
 unsigned long currentMillis;
 
 int charToInt(char c){
-  return (char)c;
+  int i = (int) c;
+  if(i < 48 || 58 < i){
+    return -1;
+  }
+  return (i - 48) * 6;
 }
 
 void decLevel(){
@@ -60,6 +64,9 @@ void setup(){
 void loop(){
   while(Serial.available() > 0) {
     int level = charToInt(Serial.read());
+    if(level < 0){
+      continue;
+    }
     setLevel(level);
   }
 
@@ -69,7 +76,6 @@ void loop(){
     previousMillis += INTERVAL;
     updateActualLevel();
     rainbow();
-    Serial.println(mLevel);
   }
 }
 
