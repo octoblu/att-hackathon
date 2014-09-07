@@ -1,18 +1,39 @@
+window.model = {
+    heartRate: 0,
+    bac: 0,
+    chat: []
+};
+
 var conn = skynet.createConnection({
     "uuid": "81d1fb81-36aa-11e4-8e5a-919063640dc3",
     "token": "00s2406pm0dbtvs4i6t0kjshknws714i"
 });
 
-conn.on('ready', function(data){
+var uuids = {
+    arduino: 'd870d511-1c42-11e4-861d-89322229e557',
+    chat: '01ccada1-361d-11e4-8e5a-919063640dc3'
+};
+
+conn.on('ready', function(){
     console.log('Ready');
 
     conn.on('message', function(data){
         console.log(data);
+
+        if (data.fromUuid === uuids.arduino) {
+            window.model.heartRate = data.payload[0];
+            window.model.bac = data.payload[1];
+        } else if (data.devices === data.devices) {
+            window.model.chat.unshift(data.payload);
+        }
     });
 
     conn.status(function (data) {
         console.log(data);
     });
+
+    conn.subscribe({ 'uuid': 'd870d511-1c42-11e4-861d-89322229e557' });
+    conn.subscribe({ 'uuid': '01ccada1-361d-11e4-8e5a-919063640dc3', token: 'nvige9mfoe7e3ik9u3resels65g0hpvi' });
 });
 
 var frequency = 100,
@@ -39,7 +60,7 @@ function getAverage() {
         average = average + item;
     });
 
-    console.log(average / period);
+    window.model.face = average/period;
 
     conn.message({
         devices: '*',

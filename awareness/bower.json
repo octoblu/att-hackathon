@@ -7,6 +7,10 @@
     "jquery": "~2.1.1",
     "jsfeat": "*",
     "underscore": "~1.7.0",
-    "camgaze.js": "https://github.com/wallarelvo/camgaze.js.git#master"
+    "camgaze.js": "https://github.com/wallarelvo/camgaze.js.git#master",
+    "angular": "~1.2.23"
+  },
+  "resolutions": {
+    "jquery": "~2.1.1"
   }
 }

@@ -3,7 +3,7 @@ var uuids = {
   alcohol: '25944a21-3601-11e4-8e5a-919063640dc3',
   mike: 'ca03a096-b9e3-4c7c-8e77-b85cf7ad1d2f',
   koshin: 'effe7a0e-cb0f-4175-bc0e-3912749380d6',
-  heart: 'd870d511-1c42-11e4-861d-89322229e557'
+  micro: 'd870d511-1c42-11e4-861d-89322229e557'
 };
 
 var heartInterval;
@@ -21,26 +21,28 @@ conn.on('ready', function(data){
     conn.on('message', function(data){
         console.log(data);
         switch(data.fromUuid) {
-            case uuids.heart:
+            case uuids.micro:
+
 //                setHeartRate(data.payload);
             break;
-            case uuids.alcohol:
-                console.log('alcohol', data.payload);
-                var normalized = normalizeBac(data.payload);
-                console.log('normalized', normalized);
-                var colorized = bac2Color(normalized);
-                console.log('colorized', colorized);
-                colorBlink(colorized);
-            break;
+//            case uuids.alcohol:
+//                console.log('alcohol', data.payload);
+//                var normalized = normalizeBac(data.payload);
+//                console.log('normalized', normalized);
+//                var colorized = bac2Color(normalized);
+//                console.log('colorized', colorized);
+//                colorBlink(colorized);
+//            break;
         }
     });
 
-    conn.subscribe(uuids.heart);
-    conn.subscribe(uuids.alcohol);
+    conn.subscribe(uuids.micro);
+//    conn.subscribe(uuids.alcohol);
 
     conn.status(function (data) {
         console.log(data);
     });
+
 });
 
 
