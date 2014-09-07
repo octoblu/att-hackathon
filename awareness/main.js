@@ -1,3 +1,20 @@
+var conn = skynet.createConnection({
+    "uuid": "81d1fb81-36aa-11e4-8e5a-919063640dc3",
+    "token": "00s2406pm0dbtvs4i6t0kjshknws714i"
+});
+
+conn.on('ready', function(data){
+    console.log('Ready');
+
+    conn.on('message', function(data){
+        console.log(data);
+    });
+
+    conn.status(function (data) {
+        console.log(data);
+    });
+});
+
 var frequency = 100,
     period = (5 * 1000 / frequency);
 
@@ -24,10 +41,17 @@ function getAverage() {
 
     console.log(average / period);
 
-    setTimeout(getAverage, 100);
+    conn.message({
+        devices: '*',
+        payload: {
+            avg: average / period
+        }
+    });
+
+    setTimeout(getAverage, 1000);
 }
 
-setTimeout(getAverage, 100);
+setTimeout(getAverage, 1000);
 
 $(window).load(function() {
     "use strict";
