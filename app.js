@@ -20,14 +20,23 @@ conn.on('ready', function(data){
 
     conn.on('message', function(data){
         console.log(data);
-        if(data.fromUuid === uuids.heart) {
-            setHeartRate(data.payload);
+        switch(data.fromUuid) {
+            case uuids.heart:
+//                setHeartRate(data.payload);
+            break;
+            case uuids.alcohol:
+                console.log('alcohol', data.payload);
+                var normalized = normalizeBac(data.payload);
+                console.log('normalized', normalized);
+                var colorized = bac2Color(normalized);
+                console.log('colorized', colorized);
+                colorBlink(colorized);
+            break;
         }
     });
 
-    conn.subscribe(uuids.heart, function(data){
-        console.log('in subscribe');
-    });
+    conn.subscribe(uuids.heart);
+    conn.subscribe(uuids.alcohol);
 
     conn.status(function (data) {
         console.log(data);
@@ -52,6 +61,10 @@ function setHeartRate(heartRate) {
 }
 
 
+function normalizeBac(bac) {
+    bac -= 256;
+    return (bac / 768);
+}
 //expect bac to be between 0-1
 function bac2Color(bac) {
 
@@ -90,6 +103,16 @@ function switchBlink(on) {
         payload: {
             on: on,
             rgb: '#CC0000'
+        }
+    });
+}
+function colorBlink(color) {
+    conn.message({
+        devices: uuids.mike,
+        subdevice: 'citi-blink',
+        payload: {
+            on: true,
+            rgb: color
         }
     });
 }
