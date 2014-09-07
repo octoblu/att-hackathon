@@ -24,7 +24,7 @@ void rainbow() {
   int interval = 254 / LED_COUNT;
   for(int i=0; i < LED_COUNT; i += 1) {
     if(i < mActualLevel){
-      leds[i] = CRGB(254 - (i * interval), 0, (i * interval));
+      leds[i] = CRGB((i * interval), 0, 254 - (i * interval));
     } else {
       leds[i] = CRGB(0, 0, 0);
     }
