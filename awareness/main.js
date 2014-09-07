@@ -3,7 +3,7 @@ var conn = skynet.createConnection({
     "token": "00s2406pm0dbtvs4i6t0kjshknws714i"
 });
 
-conn.on('ready', function(data){
+conn.on('ready', function(){
     console.log('Ready');
 
     conn.on('message', function(data){
@@ -14,7 +14,8 @@ conn.on('ready', function(data){
     conn.status(function (data) {
         console.log(data);
     });
-    conn.subscribe('d870d511-1c42-11e4-861d-89322229e557');
+
+    conn.subscribe({ 'uuid': 'd870d511-1c42-11e4-861d-89322229e557' });
 });
 
 var frequency = 100,
