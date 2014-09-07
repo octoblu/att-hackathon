@@ -8,8 +8,8 @@ conn.on('ready', function(){
     console.log('Ready');
 
     conn.on('message', function(data){
-        console.log('heartrate', data.payload[0]);
-        window.model.heartrate = data.payload[0];
+        console.log(data.payload);
+        window.model.heartRate = data.payload[0];
         window.model.bac = data.payload[1];
 
     });

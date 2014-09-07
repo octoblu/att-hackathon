@@ -17,8 +17,9 @@
             display: flex;
             flex-direction: row;
         }
-        .heart, .face {
+        .main {
             display: flex;
+            flex-direction: column;
             align-content: center;
             justify-content: center;
             align-items: center;
@@ -35,11 +36,19 @@
             <div id="log" class="alert alert-info"></div>
         </div>
     </div>
-    <div class="heart" ng-controller="HeartController">
-        <span kendo-radialgauge k-scale="{ min:0, max: 100}" ng-model="model.heartRate"></span>
-    </div>
-    <div class="bac">
-        <h1>bac</h1>
+    <div class="main" ng-controller="MainController">
+        <div class="stats">
+
+            Face: {{model.face}}
+            BAC: {{model.bac}}
+            Heart: {{model.heartRate}}
+        </div>
+        <div class="heart" ng-controller="HeartController">
+            <span kendo-radialgauge k-scale="{ min:40, max: 160}" ng-model="model.heartRate"></span>
+        </div>
+        <div class="bac">
+            <h1>bac</h1>
+        </div>
     </div>
 </div>
 

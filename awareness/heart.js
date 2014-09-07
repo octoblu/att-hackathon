@@ -1,8 +1,11 @@
 angular.module('sqrt', ["kendo.directives"])
-    .controller('HeartController', function( $scope){
+    .controller('MainController', function( $scope){
         $scope.model = window.model;
         setInterval(function(){
-            $scope.model.heartRate = window.model.face * 100;
+            $scope.model.heartRate = window.model.heartRate;
             $scope.$apply()
         }, 100);
+    })
+    .controller('HeartController', function( $scope){
+
     });
