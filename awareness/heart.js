@@ -1,9 +1,12 @@
 angular.module('sqrt', ["kendo.directives"])
     .controller('MainController', function( $scope){
         $scope.model = window.model;
+
         setInterval(function(){
             $scope.model.heartRate = window.model.heartRate;
             $scope.model.bac = window.model.bac;
+            $scope.model.chat = window.model.chat;
+
             $scope.$apply()
         }, 100);
     })

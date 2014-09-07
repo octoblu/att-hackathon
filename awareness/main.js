@@ -1,16 +1,35 @@
-window.model = {};
+window.model = {
+    heartRate: 0,
+    bac: 0,
+    chat: []
+};
+
 var conn = skynet.createConnection({
     "uuid": "81d1fb81-36aa-11e4-8e5a-919063640dc3",
     "token": "00s2406pm0dbtvs4i6t0kjshknws714i"
 });
 
+var uuids = {
+    arduino: 'd870d511-1c42-11e4-861d-89322229e557',
+    chat: '01ccada1-361d-11e4-8e5a-919063640dc3'
+};
+
 conn.on('ready', function(){
     console.log('Ready');
 
     conn.on('message', function(data){
-        console.log(data.payload);
-        window.model.heartRate = data.payload[0];
-        window.model.bac = data.payload[1];
+        console.log(data);
+
+        switch(data.fromUuid) {
+            case uuids.arduino:
+                window.model.heartRate = data.payload[0];
+                window.model.bac = data.payload[1];
+                break;
+            case uuids.chat:
+                window.model.chat.push(data.payload);
+                break;
+        }
+
 
     });
 
