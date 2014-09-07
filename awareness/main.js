@@ -48,10 +48,10 @@ function getAverage() {
         }
     });
 
-    setTimeout(getAverage, 1000);
+    setTimeout(getAverage, 500);
 }
 
-setTimeout(getAverage, 1000);
+setTimeout(getAverage, 500);
 
 $(window).load(function() {
     "use strict";
