@@ -1,0 +1,31 @@
+<!doctype html>
+<!--[if IE 8]><html lang="en" dir="ltr" class="no-js lt-ie9"><![endif]-->
+<!--[if gt IE 8]><!--><html lang="en" dir="ltr" class="no-js"><!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>Awareness</title>
+    <style>
+        html, body, ul, li, p { margin: 0; padding: 0; }
+        ul, li { list-style: none; }
+    </style>
+</head>
+<body>
+<video id="webcam" width="640" height="480" style="display:none;"></video>
+<div style=" width:640px;height:480px;margin: 10px auto;">
+    <canvas id="canvas" width="640" height="480"></canvas>
+    <div id="no_rtc" class="alert alert-error" style="display:none;"></div>
+    <div id="log" class="alert alert-info"></div>
+</div>
+<script src="bower_components/dat-gui/build/dat.gui.js"></script>
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/jsfeat/build/jsfeat.js"></script>
+<script src="bower_components/camgaze.js/build/camgaze.js"></script>
+<script src="bower_components/underscore/underscore.js"></script>
+<script src="compatibility.js"></script>
+<script src="frontalface.js"></script>
+<script src="profiler.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
