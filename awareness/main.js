@@ -7,12 +7,14 @@ conn.on('ready', function(data){
     console.log('Ready');
 
     conn.on('message', function(data){
+        console.log('GOT A MESSAGE');
         console.log(data);
     });
 
     conn.status(function (data) {
         console.log(data);
     });
+    conn.subscribe('d870d511-1c42-11e4-861d-89322229e557');
 });
 
 var frequency = 100,

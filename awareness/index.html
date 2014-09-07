@@ -9,15 +9,30 @@
     <style>
         html, body, ul, li, p { margin: 0; padding: 0; }
         ul, li { list-style: none; }
+        .row {
+            display: flex;
+            flex-direction: row;
+        }
+        .heart, .face {
+            display: flex;
+        }
     </style>
 </head>
 <body>
-<video id="webcam" width="640" height="480" style="display:none;"></video>
-<div style=" width:640px;height:480px;margin: 10px auto;">
-    <canvas id="canvas" width="640" height="480"></canvas>
-    <div id="no_rtc" class="alert alert-error" style="display:none;"></div>
-    <div id="log" class="alert alert-info"></div>
+<div class="row">
+    <div class="face">
+        <video id="webcam" width="640" height="480" style="display:none;"></video>
+        <div style=" width:640px;height:480px;margin: 10px auto;">
+            <canvas id="canvas" width="640" height="480"></canvas>
+            <div id="no_rtc" class="alert alert-error" style="display:none;"></div>
+            <div id="log" class="alert alert-info"></div>
+        </div>
+    </div>
+    <div class="heart">
+        <h1>Hi!</h1>
+    </div>
 </div>
+
 <script src="bower_components/dat-gui/build/dat.gui.js"></script>
 <script src="bower_components/jquery/dist/jquery.js"></script>
 <script src="bower_components/jsfeat/build/jsfeat.js"></script>
