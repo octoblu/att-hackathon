@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
     <title>Awareness</title>
     <style>
-        html, body, ul, li, p { margin: 0; padding: 0; }
+        html, body, ul, li, p { margin: 0; padding: 0; font-family: sans-serif }
         ul, li { list-style: none; }
         .row {
             display: flex;
@@ -24,37 +24,67 @@
             justify-content: center;
             align-items: center;
         }
+        .face {
+            display: flex;
+            flex-direction: column;
+            align-content: center;
+            justify-content: center;
+            align-items: center;
+        }
+        .stats {
+            display: flex;
+            flex-direction: column;
+            align-content: center;
+            justify-content: center;
+            align-items: center;
+        }
+        .bac {
+            display: flex;
+            flex-direction: column;
+            align-content: center;
+            justify-content: center;
+            align-items: center;
+        }
     </style>
 </head>
 <body ng-app="sqrt">
-<div class="row">
-    <div class="face">
-        <video id="webcam" width="640" height="480" style="display:none;"></video>
-        <div style=" width:640px;height:480px;margin: 10px auto;">
-            <canvas id="canvas" width="640" height="480"></canvas>
-            <div id="no_rtc" class="alert alert-error" style="display:none;"></div>
-            <div id="log" class="alert alert-info"></div>
+<div class="main" ng-controller="MainController">
+    <div class="row">
+        <div class="face">
+            <video id="webcam" width="640" height="480" style="display:none;"></video>
+            <div style=" width:640px;height:480px;margin: 10px auto;">
+                <canvas id="canvas" width="640" height="480"></canvas>
+                <div id="no_rtc" class="alert alert-error" style="display:none;"></div>
+                <div id="log" class="alert alert-info"></div>
+            </div>
         </div>
-    </div>
-    <div class="main" ng-controller="MainController">
         <div class="stats">
+            <h1 style="margin-bottom: 0;">Awareness</h1>
+            <div style="width: 100%; padding-left: 20px; text-align: center;">
+                <h2 style="color: white;">
+                    <div ng-if="model.face <= 0.3" style="background: red; padding-top: 20px; height: 50px;">Danger</div>
+                    <div ng-if="model.face > 0.3 && model.face < 0.7" style="background: yellow; padding-top: 20px; color: black;height: 50px;">Warning</div>
+                    <div ng-if="model.face >= 0.7" style="background: green; padding-top: 20px; height: 50px;">Good</div>
+                </h2>
+            </div>
+            <div class="row" style="padding-left: 20px;">
+                <div class="heart" ng-controller="HeartController">
+                    <h1 style="text-align: center;">Heart Rate</h1>
+                    <span kendo-radialgauge k-scale="heartScale" ng-model="model.heartRate"></span>
+                </div>
+                <div class="bac" ng-controller="BACController" style="min-width: 200px;">
+                    <h1>BAC</h1>
+                    <input kendo-slider k-min="0" k-orientation="'vertical'" k-max="1000" k-small-step="10" k-large-step="20" ng-model="model.bac">
+                </div>
+            </div>
+            <br />
+            <br />
             Face: {{model.face}}
             BAC: {{model.bac}}
             Heart: {{model.heartRate}}
         </div>
-        <div class="gauges">
-            <div class="heart" ng-controller="HeartController">
-                <span kendo-radialgauge k-scale="heartScale" ng-model="model.heartRate"></span>
-            </div>
-
-            <div class="bac">
-                <h1>bac</h1>
-            </div>
-        </div>
-
     </div>
 </div>
-
 <script src="bower_components/dat-gui/build/dat.gui.js"></script>
 <script src="bower_components/jquery/dist/jquery.js"></script>
 <script src="bower_components/angular/angular.min.js"></script>

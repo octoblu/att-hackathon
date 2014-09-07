@@ -46,6 +46,7 @@ function getAverage() {
     });
 
     window.model.face = average/period;
+
     conn.message({
         devices: '*',
         payload: {

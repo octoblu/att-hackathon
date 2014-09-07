@@ -3,10 +3,11 @@ angular.module('sqrt', ["kendo.directives"])
         $scope.model = window.model;
         setInterval(function(){
             $scope.model.heartRate = window.model.heartRate;
+            $scope.model.bac = window.model.bac;
             $scope.$apply()
         }, 100);
     })
-    .controller('HeartController', function( $scope){
+    .controller('HeartController', function($scope){
         $scope.heartScale ={
             minorUnit: 5,
             startAngle: -30,
@@ -34,4 +35,8 @@ angular.module('sqrt', ["kendo.directives"])
             ]
         };
 
+    })
+    .controller('BACController', function($scope){
+    })
+    .controller('FaceController', function($scope){
     });
