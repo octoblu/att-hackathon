@@ -2,6 +2,10 @@
 <!--[if IE 8]><html lang="en" dir="ltr" class="no-js lt-ie9"><![endif]-->
 <!--[if gt IE 8]><!--><html lang="en" dir="ltr" class="no-js"><!--<![endif]-->
 <head>
+    <link href="http://cdn.kendostatic.com/2014.1.318/styles/kendo.common.min.css" rel="stylesheet" type="text/css" />
+    <link href="http://cdn.kendostatic.com/2014.1.318/styles/kendo.silver.min.css" rel="stylesheet" type="text/css" />
+    <link href="http://cdn.kendostatic.com/2014.1.318/styles/kendo.mobile.all.min.css" rel="stylesheet" type="text/css" />
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
@@ -15,10 +19,13 @@
         }
         .heart, .face {
             display: flex;
+            align-content: center;
+            justify-content: center;
+            align-items: center;
         }
     </style>
 </head>
-<body>
+<body ng-app="sqrt">
 <div class="row">
     <div class="face">
         <video id="webcam" width="640" height="480" style="display:none;"></video>
@@ -28,20 +35,26 @@
             <div id="log" class="alert alert-info"></div>
         </div>
     </div>
-    <div class="heart">
-        <h1>Hi!</h1>
+    <div class="heart" ng-controller="HeartController">
+        <span kendo-radialgauge k-scale="{ min:0, max: 100}" ng-model="model.heartRate"></span>
+    </div>
+    <div class="bac">
+        <h1>bac</h1>
     </div>
 </div>
 
 <script src="bower_components/dat-gui/build/dat.gui.js"></script>
 <script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/angular/angular.min.js"></script>
+<script src="http://cdn.kendostatic.com/2014.2.903/js/kendo.all.min.js"></script>
+
 <script src="bower_components/jsfeat/build/jsfeat.js"></script>
 <script src="//skynet.im/js/skynet.js"></script>
-<!--<script src="bower_components/camgaze.js/build/camgaze.js"></script>-->
 <script src="bower_components/underscore/underscore.js"></script>
 <script src="compatibility.js"></script>
 <script src="frontalface.js"></script>
 <script src="profiler.js"></script>
 <script src="main.js"></script>
+<script src="heart.js"></script>
 </body>
 </html>

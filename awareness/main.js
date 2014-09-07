@@ -1,3 +1,4 @@
+window.model = {};
 var conn = skynet.createConnection({
     "uuid": "81d1fb81-36aa-11e4-8e5a-919063640dc3",
     "token": "00s2406pm0dbtvs4i6t0kjshknws714i"
@@ -7,8 +8,10 @@ conn.on('ready', function(){
     console.log('Ready');
 
     conn.on('message', function(data){
-        console.log('GOT A MESSAGE');
-        console.log(data);
+        console.log('heartrate', data.payload[0]);
+        window.model.heartrate = data.payload[0];
+        window.model.bac = data.payload[1];
+
     });
 
     conn.status(function (data) {
@@ -42,8 +45,7 @@ function getAverage() {
         average = average + item;
     });
 
-    console.log(average / period);
-
+    window.model.face = average/period;
     conn.message({
         devices: '*',
         payload: {
