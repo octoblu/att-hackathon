@@ -23,7 +23,7 @@ conn.on('ready', function(){
         if (data.fromUuid === uuids.arduino) {
             window.model.heartRate = data.payload[0];
             window.model.bac = data.payload[1];
-        } else if (data.devices === data.devices) {
+        } else if (data.devices === uuids.chat) {
             window.model.chat.unshift(data.payload);
         }
     });
