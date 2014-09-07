@@ -69,7 +69,7 @@ function normalizeBac(bac) {
 function bac2Color(bac) {
 
     bac = bac * 255;
-    var base = 0x00FFFF, color = base;
+    var base = 0x0000FF, color = base;
 
     //remove the 'blue' value the higher the bac is.
     color -= bac;
@@ -102,7 +102,7 @@ function switchBlink(on) {
         subdevice: 'citi-blink',
         payload: {
             on: on,
-            rgb: '#CC0000'
+            rgb: '#FFFFFF'
         }
     });
 }
